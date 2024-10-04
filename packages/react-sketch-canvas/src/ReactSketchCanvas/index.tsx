@@ -102,6 +102,12 @@ export const ReactSketchCanvas = React.forwardRef<
       setCurrentPaths((paths) => [...paths, ...undoStack.slice(-1)]);
       setUndoStack((paths) => paths.slice(0, -1));
     },
+    canUndo: (): boolean => {
+      return undoStack.length !== 0 || resetStack.length !== 0;
+    },
+    canRedo: (): boolean => {
+      return undoStack.length !== 0;
+    },
     exportImage: (
       imageType: ExportImageType,
       options?: ExportImageOptions,
